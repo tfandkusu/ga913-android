@@ -1,4 +1,4 @@
-package com.tfankusu.ga913android.ui.theme
+package com.tfandkusu.ga913android.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

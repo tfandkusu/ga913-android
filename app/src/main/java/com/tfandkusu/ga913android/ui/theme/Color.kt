@@ -1,4 +1,4 @@
-package com.tfankusu.ga913android.ui.theme
+package com.tfandkusu.ga913android.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

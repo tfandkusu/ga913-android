@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.tfankusu.ga913android"
+    namespace = "com.tfandkusu.ga913android"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.tfankusu.ga913android"
+        applicationId = "com.tfandkusu.ga913android"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
