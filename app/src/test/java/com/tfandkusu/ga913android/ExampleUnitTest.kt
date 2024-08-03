@@ -1,4 +1,4 @@
-package com.tfankusu.ga913android
+package com.tfandkusu.ga913android
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

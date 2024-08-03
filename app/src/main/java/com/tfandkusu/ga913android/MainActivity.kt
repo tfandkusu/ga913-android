@@ -1,4 +1,4 @@
-package com.tfankusu.ga913android
+package com.tfandkusu.ga913android
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.tfankusu.ga913android.ui.theme.Ga913androidTheme
+import com.tfandkusu.ga913android.ui.theme.Ga913androidTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
