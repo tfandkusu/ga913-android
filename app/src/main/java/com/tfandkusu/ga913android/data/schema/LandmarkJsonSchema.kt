@@ -1,8 +1,8 @@
-package com.tfandkusu.ga913android.data
+package com.tfandkusu.ga913android.data.schema
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LandmarkJsonScheme(
+data class LandmarkJsonSchema(
     val id: Long,
     val name: String,
     val state: String,
