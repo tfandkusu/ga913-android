@@ -8,12 +8,14 @@ import com.tfandkusu.ga913android.presentation.MyBaseViewModel
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Effect
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.State
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 interface LandmarkListViewModel :
     MyBaseViewModel<
@@ -45,44 +47,47 @@ interface LandmarkListViewModel :
     }
 }
 
-class LandmarkListViewModelImpl(
-    private val repository: LandmarkRepository,
-) : ViewModel(),
-    LandmarkListViewModel {
-    private val _state = MutableStateFlow(State())
-    override val state = _state
+@HiltViewModel
+class LandmarkListViewModelImpl
+    @Inject
+    constructor(
+        private val repository: LandmarkRepository,
+    ) : ViewModel(),
+        LandmarkListViewModel {
+        private val _state = MutableStateFlow(State())
+        override val state = _state
 
-    private val channel = createEffectChannel()
+        private val channel = createEffectChannel()
 
-    override val effect: Flow<Effect>
-        get() = channel.receiveAsFlow()
+        override val effect: Flow<Effect>
+            get() = channel.receiveAsFlow()
 
-    override fun event(event: Event) {
-        viewModelScope.launch {
-            when (event) {
-                is Event.Load -> {
-                    combine(
-                        repository.list(),
-                        state.map { it.favoritesOnly },
-                    ) { landmarks, favoritesOnly ->
-                        if (favoritesOnly) {
-                            landmarks.filter { it.isFavorite }
-                        } else {
-                            landmarks
+        override fun event(event: Event) {
+            viewModelScope.launch {
+                when (event) {
+                    is Event.Load -> {
+                        combine(
+                            repository.list(),
+                            state.map { it.favoritesOnly },
+                        ) { landmarks, favoritesOnly ->
+                            if (favoritesOnly) {
+                                landmarks.filter { it.isFavorite }
+                            } else {
+                                landmarks
+                            }
+                        }.collect {
+                            _state.value = _state.value.copy(landmarks = it)
                         }
-                    }.collect {
-                        _state.value = _state.value.copy(landmarks = it)
                     }
-                }
 
-                is Event.OnChangeFavoritesOnly -> {
-                    _state.value = _state.value.copy(favoritesOnly = event.value)
-                }
+                    is Event.OnChangeFavoritesOnly -> {
+                        _state.value = _state.value.copy(favoritesOnly = event.value)
+                    }
 
-                is Event.OnClickLandmark -> {
-                    channel.send(Effect.NavigateToLandmarkDetail(event.id))
+                    is Event.OnClickLandmark -> {
+                        channel.send(Effect.NavigateToLandmarkDetail(event.id))
+                    }
                 }
             }
         }
     }
-}
