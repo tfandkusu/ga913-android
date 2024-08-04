@@ -146,7 +146,7 @@ class LandmarkListViewModelPreview(
 
 @Composable
 @Preview
-fun LandmarkListScreenPreview(
+private fun Preview(
     @PreviewParameter(PreviewLandmarkListProvider::class) landmarks: List<Landmark>,
 ) {
     val state =
