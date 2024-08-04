@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.theme
+package com.tfandkusu.ga913android.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
