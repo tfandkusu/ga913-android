@@ -1,19 +1,20 @@
 package com.tfandkusu.ga913android.ui.list
 
 import androidx.compose.foundation.layout.Arrangement.spacedBy
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.tfandkusu.ga913android.R
 import com.tfandkusu.ga913android.component.MyTopAppBar
 import com.tfandkusu.ga913android.model.Landmark
+import com.tfandkusu.ga913android.presentation.use
 import com.tfandkusu.ga913android.theme.MyTheme
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Effect
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
@@ -36,7 +38,7 @@ import kotlinx.coroutines.flow.flow
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
-    val state: State by viewModel.state.collectAsState()
+    val (state, dispatch) = use(viewModel)
     Scaffold(
         topBar = {
             MyTopAppBar(title = { Text(stringResource(R.string.app_name)) })
@@ -45,29 +47,53 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
         LazyColumn(
             modifier =
                 Modifier
-                    .fillMaxSize()
-                    .padding(padding),
+                    .fillMaxSize(),
+            contentPadding = padding,
         ) {
             item {
-                Row(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
-                    horizontalArrangement = spacedBy(16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        modifier = Modifier.weight(1f),
-                        text = stringResource(R.string.landmark_list_favorites_only),
-                        style = MaterialTheme.typography.bodyLarge,
-                    )
-                    Switch(checked = state.favoritesOnly, onCheckedChange = {
-                        viewModel.event(Event.OnChangeFavoritesOnly(it))
-                    })
-                }
+                FavoritesOnlySwitch(
+                    favoritesOnly = state.favoritesOnly,
+                    onCheckedChange = { favoritesOnly ->
+                        dispatch(Event.OnChangeFavoritesOnly(favoritesOnly))
+                    },
+                )
+            }
+            items(state.landmarks) { landmark ->
+                LandmarkListItem(
+                    landmark = landmark,
+                    onClick = {
+                        dispatch(Event.OnClickLandmark(landmark.id))
+                    },
+                )
             }
         }
+    }
+}
+
+@Composable
+private fun FavoritesOnlySwitch(
+    favoritesOnly: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Row(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            horizontalArrangement = spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                modifier = Modifier.weight(1f),
+                text = stringResource(R.string.landmark_list_favorites_only),
+                style = MaterialTheme.typography.bodyLarge,
+            )
+            Switch(checked = favoritesOnly, onCheckedChange = onCheckedChange)
+        }
+        HorizontalDivider()
     }
 }
 

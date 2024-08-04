@@ -46,7 +46,7 @@ internal class LandmarkRepositoryImpl
                             isFavorite = it.isFavorite,
                             park = it.park,
                             description = it.description,
-                            imageUrl = "file:///android_asset/" + it.imageName,
+                            imageUrl = "file:///android_asset/${it.imageName}.jpg",
                         )
                     }
             }
