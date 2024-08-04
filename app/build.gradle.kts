@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.androidx.navigation.safeargs)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -48,9 +50,14 @@ android {
     }
 }
 
+hilt {
+    enableAggregatingTask = false
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -64,9 +71,12 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.fragment.compose)
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.test.core)
+    testImplementation(libs.mockk)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

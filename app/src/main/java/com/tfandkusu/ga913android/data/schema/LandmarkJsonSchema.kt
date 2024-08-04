@@ -9,5 +9,5 @@ data class LandmarkJsonSchema(
     val isFavorite: Boolean,
     val park: String,
     val description: String,
-    val imageUrl: String,
+    val imageName: String,
 )
