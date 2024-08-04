@@ -15,15 +15,22 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-interface LandmarkListViewModel : MyBaseViewModel<
+interface LandmarkListViewModel :
+    MyBaseViewModel<
         Event,
         State,
-        Effect> {
-
+        Effect,
+    > {
     sealed class Event {
         data object Load : Event()
-        data class OnClickLandmark(val id: Long) : Event()
-        data class OnChangeFavoritesOnly(val value: Boolean) : Event()
+
+        data class OnClickLandmark(
+            val id: Long,
+        ) : Event()
+
+        data class OnChangeFavoritesOnly(
+            val value: Boolean,
+        ) : Event()
     }
 
     data class State(
@@ -32,14 +39,16 @@ interface LandmarkListViewModel : MyBaseViewModel<
     )
 
     sealed class Effect {
-        data class NavigateToLandmarkDetail(val id: Long) : Effect()
+        data class NavigateToLandmarkDetail(
+            val id: Long,
+        ) : Effect()
     }
 }
 
 class LandmarkListViewModelImpl(
     private val repository: LandmarkRepository,
-) : LandmarkListViewModel, ViewModel() {
-
+) : ViewModel(),
+    LandmarkListViewModel {
     private val _state = MutableStateFlow(State())
     override val state = _state
 
@@ -54,7 +63,7 @@ class LandmarkListViewModelImpl(
                 is Event.Load -> {
                     combine(
                         repository.list(),
-                        state.map { it.favoritesOnly }
+                        state.map { it.favoritesOnly },
                     ) { landmarks, favoritesOnly ->
                         if (favoritesOnly) {
                             landmarks.filter { it.isFavorite }
@@ -77,4 +86,3 @@ class LandmarkListViewModelImpl(
         }
     }
 }
-
