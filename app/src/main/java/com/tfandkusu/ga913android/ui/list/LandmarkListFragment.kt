@@ -24,7 +24,7 @@ class LandmarkListFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) = content {
         MyTheme {
-            LandmarkListScreen()
+            LandmarkListScreen(viewModel = viewModel)
         }
     }
 }
