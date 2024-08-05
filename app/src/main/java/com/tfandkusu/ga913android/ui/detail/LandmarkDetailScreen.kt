@@ -1,20 +1,32 @@
 package com.tfandkusu.ga913android.ui.detail
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.tfandkusu.ga913android.component.MyTopAppBar
@@ -35,7 +47,13 @@ fun LandmarkDetailScreen(viewModel: LandmarkDetailViewModel) {
     val (state, dispatch) = use(viewModel)
     Scaffold(
         topBar = {
-            MyTopAppBar(title = { Text(state.landmark?.name ?: "") })
+            MyTopAppBar(title = {
+                Text(
+                    state.landmark?.name ?: "",
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                )
+            })
         },
     ) { padding ->
         LazyColumn(
@@ -47,6 +65,15 @@ fun LandmarkDetailScreen(viewModel: LandmarkDetailViewModel) {
             state.landmark?.let {
                 item {
                     Image(it.imageUrl)
+                }
+                item {
+                    TitleFavorite(
+                        name = it.name,
+                        isFavorite = it.isFavorite,
+                        onFavoriteClick = {
+                            dispatch(Event.OnClickFavorite)
+                        },
+                    )
                 }
             }
         }
@@ -65,7 +92,14 @@ private fun Image(imageUrl: String) {
         AsyncImage(
             modifier =
                 Modifier
-                    .clip(RoundedCornerShape(125.dp))
+                    .shadow(
+                        elevation = 8.dp,
+                        shape = RoundedCornerShape(125.dp),
+                    ).border(
+                        width = 4.dp,
+                        color = MaterialTheme.colorScheme.background,
+                        shape = RoundedCornerShape(125.dp),
+                    ).clip(RoundedCornerShape(125.dp))
                     .size(250.dp),
             model = imageUrl,
             contentDescription = null,
@@ -73,8 +107,44 @@ private fun Image(imageUrl: String) {
     }
 }
 
+@Composable
+private fun TitleFavorite(
+    name: String,
+    isFavorite: Boolean,
+    onFavoriteClick: () -> Unit,
+) {
+    Row(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = spacedBy(16.dp),
+    ) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = name,
+            style = MaterialTheme.typography.headlineMedium,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
+        )
+        IconButton(onClick = onFavoriteClick) {
+            Icon(
+                imageVector = Icons.Filled.Star,
+                contentDescription = "Favorite",
+                tint =
+                    if (isFavorite) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.outline
+                    },
+            )
+        }
+    }
+}
+
 class LandmarkDetailViewModelPreview(
-    private val previewState: LandmarkDetailViewModel.State,
+    private val previewState: State,
 ) : LandmarkDetailViewModel {
     override val state: StateFlow<State>
         get() = MutableStateFlow(previewState)
@@ -84,19 +154,45 @@ class LandmarkDetailViewModelPreview(
     override fun event(event: Event) {}
 }
 
+private class PreviewLandmarkDetailProvider : PreviewParameterProvider<Landmark> {
+    override val values: Sequence<Landmark>
+        get() =
+            sequenceOf(
+                Landmark(
+                    id = 1,
+                    name = "Turtle Rock",
+                    state = "California",
+                    isFavorite = false,
+                    park = "Joshua Tree National Park",
+                    description = "Description",
+                    imageUrl = "file:///android_asset/turtlerock.jpg",
+                ),
+                Landmark(
+                    id = 1,
+                    name = "Turtle Rock",
+                    state = "California",
+                    isFavorite = true,
+                    park = "Joshua Tree National Park",
+                    description = "Description",
+                    imageUrl = "file:///android_asset/turtlerock.jpg",
+                ),
+                Landmark(
+                    id = 1,
+                    name = "AAAAA BBBBB CCCCC DDDDD EEEEE FFFFF GGGGG",
+                    state = "California",
+                    isFavorite = false,
+                    park = "Joshua Tree National Park",
+                    description = "Description",
+                    imageUrl = "file:///android_asset/turtlerock.jpg",
+                ),
+            )
+}
+
 @Composable
 @Preview
-private fun Preview() {
-    val landmark =
-        Landmark(
-            id = 1,
-            name = "Turtle Rock",
-            state = "California",
-            isFavorite = false,
-            park = "Joshua Tree National Park",
-            description = "Description",
-            imageUrl = "file:///android_asset/turtlerock.jpg",
-        )
+private fun Preview(
+    @PreviewParameter(PreviewLandmarkDetailProvider::class) landmark: Landmark,
+) {
     val state =
         State(
             landmark = landmark,
