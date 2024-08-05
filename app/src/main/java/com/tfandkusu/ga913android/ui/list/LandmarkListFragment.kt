@@ -10,6 +10,8 @@ import androidx.fragment.compose.content
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.transition.MaterialSharedAxis
 import com.tfandkusu.ga913android.theme.MyTheme
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Effect
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
@@ -44,7 +46,15 @@ class LandmarkListFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.effect.collect { effect ->
                     when (effect) {
-                        is Effect.NavigateToLandmarkDetail -> {}
+                        is Effect.NavigateToLandmarkDetail -> {
+                            exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+                            reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+                            findNavController().navigate(
+                                LandmarkListFragmentDirections.toLandmarkDetailFragment(
+                                    effect.id,
+                                ),
+                            )
+                        }
                     }
                 }
             }
