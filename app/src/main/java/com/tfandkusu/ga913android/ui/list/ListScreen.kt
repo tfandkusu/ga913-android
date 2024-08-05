@@ -97,7 +97,7 @@ private fun FavoritesOnlySwitch(
     }
 }
 
-class PreviewLandmarkListProvider : PreviewParameterProvider<List<Landmark>> {
+private class PreviewLandmarkListProvider : PreviewParameterProvider<List<Landmark>> {
     override val values: Sequence<List<Landmark>>
         get() =
             sequenceOf(
@@ -146,6 +146,9 @@ class LandmarkListViewModelPreview(
 
 @Composable
 @Preview
+@Preview(
+    fontScale = 2.0f,
+)
 private fun Preview(
     @PreviewParameter(PreviewLandmarkListProvider::class) landmarks: List<Landmark>,
 ) {

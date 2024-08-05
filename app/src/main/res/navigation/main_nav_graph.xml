@@ -6,5 +6,19 @@
     <fragment
         android:id="@+id/landmarkListFragment"
         android:name="com.tfandkusu.ga913android.ui.list.LandmarkListFragment"
-        android:label="LandmarkListFragment" />
+        android:label="LandmarkListFragment">
+        <action
+            android:id="@+id/toLandmarkDetailFragment"
+            app:destination="@+id/landmarkDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/landmarkDetailFragment"
+        android:name="com.tfandkusu.ga913android.ui.detail.LandmarkDetailFragment"
+        android:label="LandmarkDetailFragment">
+        <argument
+            android:name="landmarkId"
+            app:nullable="false"
+            app:argType="long" />
+    </fragment>
 </navigation>

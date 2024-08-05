@@ -8,6 +8,7 @@ import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.State
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.coVerifySequence
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
@@ -55,6 +56,9 @@ class LandmarkListViewModelTest {
                 ),
                 viewModel.state.value,
             )
+            coVerifySequence {
+                repository.list()
+            }
         }
 
     @Test
