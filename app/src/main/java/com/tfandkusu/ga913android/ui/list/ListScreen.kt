@@ -146,6 +146,9 @@ class LandmarkListViewModelPreview(
 
 @Composable
 @Preview
+@Preview(
+    fontScale = 2.0f,
+)
 private fun Preview(
     @PreviewParameter(PreviewLandmarkListProvider::class) landmarks: List<Landmark>,
 ) {

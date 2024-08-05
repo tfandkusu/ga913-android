@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.fragment.compose.content
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialSharedAxis
 import com.tfandkusu.ga913android.theme.MyTheme
@@ -32,7 +33,12 @@ class LandmarkDetailFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) = content {
         MyTheme {
-            LandmarkDetailScreen(viewModel = viewModel)
+            LandmarkDetailScreen(
+                viewModel = viewModel,
+                onBackPressed = {
+                    findNavController().popBackStack()
+                },
+            )
         }
     }
 }

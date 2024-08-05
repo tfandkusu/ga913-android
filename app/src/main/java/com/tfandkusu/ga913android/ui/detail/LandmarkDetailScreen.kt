@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -23,12 +24,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.tfandkusu.ga913android.R
 import com.tfandkusu.ga913android.component.MyTopAppBar
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.presentation.use
@@ -43,17 +46,24 @@ import kotlinx.coroutines.flow.flow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LandmarkDetailScreen(viewModel: LandmarkDetailViewModel) {
+fun LandmarkDetailScreen(
+    viewModel: LandmarkDetailViewModel,
+    onBackPressed: () -> Unit,
+) {
     val (state, dispatch) = use(viewModel)
     Scaffold(
         topBar = {
-            MyTopAppBar(title = {
-                Text(
-                    state.landmark?.name ?: "",
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1,
-                )
-            })
+            MyTopAppBar(
+                title = {
+                    Text(
+                        state.landmark?.name ?: "",
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1,
+                    )
+                },
+                hasBack = true,
+                onBackPressed = onBackPressed,
+            )
         },
     ) { padding ->
         LazyColumn(
@@ -73,6 +83,36 @@ fun LandmarkDetailScreen(viewModel: LandmarkDetailViewModel) {
                         onFavoriteClick = {
                             dispatch(Event.OnClickFavorite)
                         },
+                    )
+                }
+                item {
+                    ParkState(park = it.park, state = it.state)
+                }
+                item {
+                    HorizontalDivider(
+                        modifier = Modifier.padding(vertical = 16.dp),
+                    )
+                }
+                item {
+                    Text(
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        text = stringResource(id = R.string.landmark_detail_about, it.name),
+                        style = MaterialTheme.typography.headlineSmall,
+                    )
+                }
+                item {
+                    Text(
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 16.dp),
+                        text = it.description,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }
@@ -143,6 +183,33 @@ private fun TitleFavorite(
     }
 }
 
+@Composable
+private fun ParkState(
+    park: String,
+    state: String,
+) {
+    Row(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+        horizontalArrangement = spacedBy(16.dp),
+        verticalAlignment = Alignment.Bottom,
+    ) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = park,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Text(
+            text = state,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
 class LandmarkDetailViewModelPreview(
     private val previewState: State,
 ) : LandmarkDetailViewModel {
@@ -181,7 +248,7 @@ private class PreviewLandmarkDetailProvider : PreviewParameterProvider<Landmark>
                     name = "AAAAA BBBBB CCCCC DDDDD EEEEE FFFFF GGGGG",
                     state = "California",
                     isFavorite = false,
-                    park = "Joshua Tree National Park",
+                    park = "Joshua Tree National Park Park Park Park Park Park",
                     description = "Description",
                     imageUrl = "file:///android_asset/turtlerock.jpg",
                 ),
@@ -190,6 +257,9 @@ private class PreviewLandmarkDetailProvider : PreviewParameterProvider<Landmark>
 
 @Composable
 @Preview
+@Preview(
+    fontScale = 2.0f,
+)
 private fun Preview(
     @PreviewParameter(PreviewLandmarkDetailProvider::class) landmark: Landmark,
 ) {
@@ -203,6 +273,7 @@ private fun Preview(
                 LandmarkDetailViewModelPreview(
                     state,
                 ),
+            onBackPressed = {},
         )
     }
 }
