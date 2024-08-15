@@ -20,7 +20,7 @@ interface LandmarkDetailViewModel :
         Event,
         State,
         Effect,
-    > {
+        > {
     sealed class Event {
         data class Load(
             val landmarkId: Long,
