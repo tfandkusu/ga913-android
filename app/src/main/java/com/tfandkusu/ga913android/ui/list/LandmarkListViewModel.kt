@@ -22,7 +22,7 @@ interface LandmarkListViewModel :
         Event,
         State,
         Effect,
-    > {
+        > {
     sealed class Event {
         data object Load : Event()
 
