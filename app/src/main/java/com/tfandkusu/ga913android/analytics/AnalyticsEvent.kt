@@ -62,6 +62,9 @@ public object AnalyticsEvent {
          */
         public val isConversionEvent: Boolean,
     ) {
+        /**
+         * ランドマーク一覧画面
+         */
         public object LandmarkList {
             /**
              * いいねを付けたランドマークのみを表示するスイッチ
@@ -80,6 +83,9 @@ public object AnalyticsEvent {
                 )
         }
 
+        /**
+         * ランドマーク詳細画面
+         */
         public object LandmarkDetail {
             /**
              * いいねを付ける
@@ -124,8 +130,14 @@ public object AnalyticsEvent {
                 )
         }
 
+        /**
+         * 設定画面
+         */
         public object Setting
 
+        /**
+         * 情報画面
+         */
         public object Info {
             /**
              * プライバシーポリシーを表示する
