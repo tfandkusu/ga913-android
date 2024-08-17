@@ -2,6 +2,8 @@ package com.tfandkusu.ga913android.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tfandkusu.ga913android.analytics.AnalyticsEvent
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.presentation.MyBaseViewModel
@@ -41,6 +43,7 @@ class LandmarkDetailViewModelImpl
     @Inject
     constructor(
         private val repository: LandmarkRepository,
+        private val analyticsEventSender: AnalyticsEventSender,
     ) : ViewModel(),
         LandmarkDetailViewModel {
         private val _state = MutableStateFlow(State())
@@ -61,8 +64,24 @@ class LandmarkDetailViewModelImpl
                     }
 
                     Event.OnClickFavorite -> {
-                        state.value.landmark?.let {
-                            repository.favorite(it.id, !it.isFavorite)
+                        state.value.landmark?.let { landmark ->
+                            val newIsFavorite = !landmark.isFavorite
+                            repository.favorite(landmark.id, newIsFavorite)
+                            if (newIsFavorite) {
+                                analyticsEventSender.sendAction(
+                                    AnalyticsEvent.Action.LandmarkDetail.FavoriteOn(
+                                        id = landmark.id,
+                                        name = landmark.name,
+                                    ),
+                                )
+                            } else {
+                                analyticsEventSender.sendAction(
+                                    AnalyticsEvent.Action.LandmarkDetail.FavoriteOff(
+                                        id = landmark.id,
+                                        name = landmark.name,
+                                    ),
+                                )
+                            }
                         }
                     }
                 }

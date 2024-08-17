@@ -12,15 +12,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialSharedAxis
+import com.tfandkusu.ga913android.analytics.AnalyticsEvent
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
+import com.tfandkusu.ga913android.analytics.sendScreenEvent
 import com.tfandkusu.ga913android.theme.MyTheme
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Effect
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LandmarkListFragment : Fragment() {
     private val viewModel: LandmarkListViewModelImpl by viewModels()
+
+    @Inject
+    lateinit var analyticsEventSender: AnalyticsEventSender
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +49,7 @@ class LandmarkListFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
+        sendScreenEvent(analyticsEventSender, AnalyticsEvent.Screen.LandmarkList)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.effect.collect { effect ->

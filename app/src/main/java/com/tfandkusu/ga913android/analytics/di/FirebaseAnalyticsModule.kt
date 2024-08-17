@@ -1,6 +1,7 @@
-package com.tfandkusu.ga913android.data
+package com.tfandkusu.ga913android.analytics.di
 
 import android.content.Context
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,12 +9,14 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
 @InstallIn(SingletonComponent::class)
-object DataModule {
+@Module
+object FirebaseAnalyticsModule {
     @Provides
     @Singleton
-    fun provideLandmarkRepository(
+    fun provideFirebaseAnalytics(
         @ApplicationContext context: Context,
-    ): LandmarkRepository = LandmarkRepositoryImpl(context = context)
+    ): FirebaseAnalytics {
+        return FirebaseAnalytics.getInstance(context)
+    }
 }

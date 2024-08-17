@@ -1,5 +1,7 @@
 package com.tfandkusu.ga913android.ui.list
 
+import com.tfandkusu.ga913android.analytics.AnalyticsEvent
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.presentation.MainDispatcherRule
@@ -29,10 +31,13 @@ class LandmarkListViewModelTest {
     @MockK
     private lateinit var repository: LandmarkRepository
 
+    @MockK(relaxed = true)
+    private lateinit var analyticsEventSender: AnalyticsEventSender
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        viewModel = LandmarkListViewModelImpl(repository)
+        viewModel = LandmarkListViewModelImpl(repository, analyticsEventSender)
     }
 
     @Test
@@ -111,5 +116,12 @@ class LandmarkListViewModelTest {
                 ),
                 viewModel.state.value,
             )
+            coVerifySequence {
+                analyticsEventSender.sendAction(
+                    AnalyticsEvent.Action.LandmarkList.FavoritesOnlySwitch(
+                        favoritesOnly = true,
+                    ),
+                )
+            }
         }
 }

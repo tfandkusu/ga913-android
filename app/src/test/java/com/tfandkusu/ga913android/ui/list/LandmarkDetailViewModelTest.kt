@@ -1,5 +1,7 @@
 package com.tfandkusu.ga913android.ui.list
 
+import com.tfandkusu.ga913android.analytics.AnalyticsEvent
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.presentation.MainDispatcherRule
@@ -29,10 +31,17 @@ class LandmarkDetailViewModelTest {
     @MockK(relaxed = true)
     private lateinit var repository: LandmarkRepository
 
+    @MockK(relaxed = true)
+    private lateinit var analyticsEventSender: AnalyticsEventSender
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        viewModel = LandmarkDetailViewModelImpl(repository)
+        viewModel =
+            LandmarkDetailViewModelImpl(
+                repository,
+                analyticsEventSender,
+            )
     }
 
     @Test
@@ -63,6 +72,7 @@ class LandmarkDetailViewModelTest {
             val landmark =
                 mockk<Landmark> {
                     every { id } returns 2L
+                    every { name } returns "landmark 2"
                     every { isFavorite } returns false
                 }
             coEvery {
@@ -76,6 +86,12 @@ class LandmarkDetailViewModelTest {
             coVerifySequence {
                 repository.get(2L)
                 repository.favorite(2L, true)
+                analyticsEventSender.sendAction(
+                    AnalyticsEvent.Action.LandmarkDetail.FavoriteOn(
+                        id = 2L,
+                        name = "landmark 2",
+                    ),
+                )
             }
         }
 }
