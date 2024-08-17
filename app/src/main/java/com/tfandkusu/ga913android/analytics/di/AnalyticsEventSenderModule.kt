@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.di
+package com.tfandkusu.ga913android.analytics.di
 
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSenderImpl
