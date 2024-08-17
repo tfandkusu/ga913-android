@@ -57,9 +57,11 @@ class AnalyticsEventSenderImpl
                     }
                 }
             }
-            if (action.isConversionEvent.not()) {
+            if (action.isConversionEvent) {
+                firebaseAnalytics.logEvent(action.eventName, bundle)
+            } else {
                 bundle.putString("ga913_action_name", action.eventName)
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
             }
-            firebaseAnalytics.logEvent(action.eventName, bundle)
         }
     }

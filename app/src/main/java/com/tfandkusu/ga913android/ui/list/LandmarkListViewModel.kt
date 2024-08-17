@@ -2,6 +2,8 @@ package com.tfandkusu.ga913android.ui.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tfandkusu.ga913android.analytics.AnalyticsEvent
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.presentation.MyBaseViewModel
@@ -52,6 +54,7 @@ class LandmarkListViewModelImpl
     @Inject
     constructor(
         private val repository: LandmarkRepository,
+        private val analyticsEventSender: AnalyticsEventSender,
     ) : ViewModel(),
         LandmarkListViewModel {
         private val _state = MutableStateFlow(State())
@@ -81,6 +84,11 @@ class LandmarkListViewModelImpl
                     }
 
                     is Event.OnChangeFavoritesOnly -> {
+                        analyticsEventSender.sendAction(
+                            AnalyticsEvent.Action.LandmarkList.FavoritesOnlySwitch(
+                                favoritesOnly = event.value,
+                            ),
+                        )
                         _state.value = _state.value.copy(favoritesOnly = event.value)
                     }
 
