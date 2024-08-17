@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.analytics
+package com.tfandkusu.ga913android.di
 
 import android.content.Context
 import com.google.firebase.analytics.FirebaseAnalytics

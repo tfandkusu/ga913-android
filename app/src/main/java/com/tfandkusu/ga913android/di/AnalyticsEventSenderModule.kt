@@ -1,5 +1,7 @@
-package com.tfandkusu.ga913android.analytics
+package com.tfandkusu.ga913android.di
 
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSenderImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
