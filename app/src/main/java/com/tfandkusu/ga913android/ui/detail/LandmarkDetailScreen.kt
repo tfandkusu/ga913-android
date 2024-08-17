@@ -32,6 +32,10 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.tfandkusu.ga913android.R
+import com.tfandkusu.ga913android.analytics.AnalyticsEvent
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSenderNoOp
+import com.tfandkusu.ga913android.analytics.SendScreenEvent
 import com.tfandkusu.ga913android.component.MyTopAppBar
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.presentation.use
@@ -48,9 +52,11 @@ import kotlinx.coroutines.flow.flow
 @Composable
 fun LandmarkDetailScreen(
     viewModel: LandmarkDetailViewModel,
+    analyticsEventSender: AnalyticsEventSender,
     onBackPressed: () -> Unit,
 ) {
     val (state, dispatch) = use(viewModel)
+    SendScreenEvent(analyticsEventSender, AnalyticsEvent.Screen.LandmarkDetail)
     Scaffold(
         topBar = {
             MyTopAppBar(
@@ -135,11 +141,13 @@ private fun Image(imageUrl: String) {
                     .shadow(
                         elevation = 8.dp,
                         shape = RoundedCornerShape(125.dp),
-                    ).border(
+                    )
+                    .border(
                         width = 4.dp,
                         color = MaterialTheme.colorScheme.background,
                         shape = RoundedCornerShape(125.dp),
-                    ).clip(RoundedCornerShape(125.dp))
+                    )
+                    .clip(RoundedCornerShape(125.dp))
                     .size(250.dp),
             model = imageUrl,
             contentDescription = null,
@@ -273,6 +281,7 @@ private fun Preview(
                 LandmarkDetailViewModelPreview(
                     state,
                 ),
+            analyticsEventSender = AnalyticsEventSenderNoOp(),
             onBackPressed = {},
         )
     }

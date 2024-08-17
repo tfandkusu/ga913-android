@@ -9,14 +9,19 @@ import androidx.fragment.compose.content
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialSharedAxis
+import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LandmarkDetailFragment : Fragment() {
     private val viewModel: LandmarkDetailViewModelImpl by viewModels()
 
     private val args: LandmarkDetailFragmentArgs by navArgs()
+
+    @Inject
+    lateinit var analyticsEventSender: AnalyticsEventSender
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,7 @@ class LandmarkDetailFragment : Fragment() {
         MyTheme {
             LandmarkDetailScreen(
                 viewModel = viewModel,
+                analyticsEventSender = analyticsEventSender,
                 onBackPressed = {
                     findNavController().popBackStack()
                 },

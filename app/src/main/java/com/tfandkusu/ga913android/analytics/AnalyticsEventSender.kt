@@ -65,3 +65,13 @@ class AnalyticsEventSenderImpl
             }
         }
     }
+
+class AnalyticsEventSenderNoOp : AnalyticsEventSender {
+    override fun sendScreen(screen: AnalyticsEvent.Screen) {
+        // no-op
+    }
+
+    override fun sendAction(action: AnalyticsEvent.Action) {
+        // no-op
+    }
+}
