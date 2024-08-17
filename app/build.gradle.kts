@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidx.navigation.safeargs)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -74,6 +75,8 @@ dependencies {
     implementation(libs.androidx.fragment.compose)
     implementation(libs.coil.compose)
     implementation(libs.dagger.hilt.android)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics.ktx)
     ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
