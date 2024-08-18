@@ -37,7 +37,7 @@ import kotlinx.coroutines.flow.flow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
+fun LandmarkListScreenHoge(viewModel: LandmarkListViewModel) {
     val (state, dispatch) = use(viewModel)
     Scaffold(
         topBar = {
@@ -158,7 +158,7 @@ private fun Preview(
             favoritesOnly = false,
         )
     MyTheme {
-        LandmarkListScreen(
+        LandmarkListScreenHoge(
             viewModel =
                 LandmarkListViewModelPreview(
                     state,
