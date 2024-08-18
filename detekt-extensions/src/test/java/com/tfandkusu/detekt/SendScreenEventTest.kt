@@ -13,17 +13,17 @@ class SendScreenEventTest {
     fun given_codeWithoutError_then_noReport() {
         val code = """
 @Composable
-fun HomeScreen(viewModel: HomeViewModel, analyticsEventSender: AnalyticsEventSender) {
-    val (state, effect, dispatch) = use(viewModel)
-    SendScreenEvent(analyticsEventSender, AnalyticsEvent.Screen.Home)
+fun LandmarkListScreen(viewModel: LandmarkListViewModel, analyticsEventSender: AnalyticsEventSender) {
+    val (state, dispatch) = use(viewModel)
+    SendScreenEvent(analyticsEventSender, AnalyticsEvent.Screen.LandmarkList)
     LaunchedEffect(Unit) { }
 }
 
 @Preview
 @Composable
-fun HomeScreenPreview() {
+private fun Preview() {
     MyTheme {
-        HomeScreen(analyticsEventSender, viewModel)
+        LandmarkListScreen(analyticsEventSender, viewModel)
     }
 }
         """.trimIndent()
@@ -35,16 +35,16 @@ fun HomeScreenPreview() {
     fun given_codeWithError_then_report() {
         val code = """
 @Composable
-fun HomeScreen(viewModel: HomeViewModel) {
-    val (state, effect, dispatch) = use(viewModel)
+fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
+    val (state, dispatch) = use(viewModel)
     LaunchedEffect(Unit) { }
 }
 
 @Preview
 @Composable
-fun HomeScreenPreview() {
+private fun Preview() {
     MyTheme {
-        HomeScreen(viewModel)
+        LandmarkListScreen(viewModel)
     }
 }
 """
