@@ -40,7 +40,7 @@ class LandmarkListFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) = content {
         MyTheme {
-            LandmarkListScreenHoge(viewModel = viewModel)
+            LandmarkListScreen(viewModel = viewModel)
         }
     }
 
