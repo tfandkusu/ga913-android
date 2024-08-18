@@ -78,6 +78,7 @@ fun LandmarkDetailScreen(
                     .fillMaxSize(),
             contentPadding = padding,
         ) {
+            // このメソッド長いかもしれない
             state.landmark?.let {
                 item {
                     Image(it.imageUrl)
