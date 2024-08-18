@@ -12,6 +12,7 @@ coroutines = "1.8.1"
 navigation = "2.7.7"
 fragment = "1.8.2"
 daggerHilt = "2.51.1"
+detekt = '1.23.6'
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +43,9 @@ hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-comp
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.7.0" }
 firebase-bom = "com.google.firebase:firebase-bom:33.1.2"
 firebase-analytics-ktx = {module = "com.google.firebase:firebase-analytics-ktx" }
+# Detekt
+detekt-api = { module = "io.gitlab.arturbosch.detekt:detekt-api", version.ref = "detekt" }
+detekt-test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version.ref = "detekt" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
@@ -52,3 +56,4 @@ androidx-navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", ver
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 devtools-ksp = { id = "com.google.devtools.ksp", version = "2.0.0-1.0.24" }
 google-services = {id = "com.google.gms.google-services", version = "4.4.2" }
+detekt-gradle-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
