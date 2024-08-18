@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ga913-android"
 include(":app")
+include(":detekt-extensions")

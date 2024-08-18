@@ -1,0 +1,4 @@
+extra-rules:
+  active: true
+  SendScreenEvent:
+    active: true
