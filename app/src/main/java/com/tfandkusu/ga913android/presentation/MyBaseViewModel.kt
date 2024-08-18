@@ -22,6 +22,7 @@ data class StateDispatch<Event, State>(
     val dispatch: (Event) -> Unit,
 )
 
+@Suppress("MaxLineLength")
 @Composable
 inline fun <reified Event, State, Effect> use(viewModel: MyBaseViewModel<Event, State, Effect>): StateDispatch<Event, State> {
     val state: State by viewModel.state.collectAsState()
