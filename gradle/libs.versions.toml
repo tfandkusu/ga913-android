@@ -46,6 +46,8 @@ firebase-analytics-ktx = {module = "com.google.firebase:firebase-analytics-ktx" 
 # Detekt
 detekt-api = { module = "io.gitlab.arturbosch.detekt:detekt-api", version.ref = "detekt" }
 detekt-test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version.ref = "detekt" }
+# Konsist
+konsist = "com.lemonappdev:konsist:0.15.1"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
