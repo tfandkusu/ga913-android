@@ -33,6 +33,4 @@ Apple 公式サンプル [Handling user input](https://developer.apple.com/tutor
 
 ## Konsist
 
-[Fragment による画面遷移における Analytics イベント送信](https://github.com/tfandkusu/ga913-android/blob/921353f3651e48a59139d0b3a5ef8642861922ce/app/src/main/java/com/tfandkusu/ga913android/ui/list/LandmarkListFragment.kt#L52)実装抜けを検出する [Konsist](https://github.com/LemonAppDev/konsist/) を用いた単体テストをこちらに実装しています。
-
-- [SendScreenEventTest.kt](https://github.com/tfandkusu/ga913-android/blob/main/app/src/test/java/com/tfandkusu/ga913android/ui/SendScreenEventTest.kt)
+[Fragment による画面遷移における Analytics イベント送信](https://github.com/tfandkusu/ga913-android/blob/921353f3651e48a59139d0b3a5ef8642861922ce/app/src/main/java/com/tfandkusu/ga913android/ui/list/LandmarkListFragment.kt#L52)実装抜けを検出する [Konsist](https://github.com/LemonAppDev/konsist/) を用いた単体テストを[こちら](https://github.com/tfandkusu/ga913-android/blob/main/app/src/test/java/com/tfandkusu/ga913android/ui/SendScreenEventTest.kt)に実装しています。
