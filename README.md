@@ -26,6 +26,10 @@ AnalyticsEvent.Screen, AnalyticsEvent.Action sealed class を実装したイン�
 
 それにより、iOS / Android でイベント名やイベントパラメータ名、値の型の違いを仕組みで防いでいます。
 
+# 画面遷移イベント送信担当関数
+
+画面遷移イベント送信担当関数の実装例は[こちら](https://github.com/tfandkusu/ga913-android/blob/main/app/src/main/java/com/tfandkusu/ga913android/analytics/ScreenEventUtil.kt)です。Fragment による画面遷移と Compose による画面遷移に対応しています。
+
 # 画面遷移イベント送信実装抜け自動チェック
 
 ## detekt カスタムルール
