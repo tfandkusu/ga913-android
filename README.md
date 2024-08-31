@@ -13,7 +13,6 @@ Apple 公式サンプル [Handling user input](https://developer.apple.com/tutor
 | 同一仕様の iOS アプリ |[tfandkusu/ga913-ios](https://github.com/tfandkusu/ga913-ios) |
 | Kotlin Multiplatform による Analytics イベント定義 | [tfandkusu/ga913-kmp](https://github.com/tfandkusu/ga913-kmp) |
 
-
 # スクリーンショット
 
 | 一覧画面 | 詳細画面 |
@@ -26,7 +25,6 @@ Analytics イベント送信は [AnalyticsEventSender クラス](https://github.
 AnalyticsEvent.Screen, AnalyticsEvent.Action sealed class を実装したインスタンスしか渡せません。それらは [AnalyticsEvent.kt](https://github.com/tfandkusu/ga913-android/blob/main/app/src/main/java/com/tfandkusu/ga913android/analytics/AnalyticsEvent.kt) に定義されていて、[tfandkusu/ga913-yaml](https://github.com/tfandkusu/ga913-yaml) により [iOS アプリ](https://github.com/tfandkusu/ga913-ios)と共通の YAML ファイルから自動生成されます。
 
 それにより、iOS / Android でイベント名やイベントパラメータ名、値の型の違いを仕組みで防いでいます。
-
 
 # 画面遷移イベント送信実装抜け自動チェック
 
