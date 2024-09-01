@@ -48,6 +48,8 @@ detekt-api = { module = "io.gitlab.arturbosch.detekt:detekt-api", version.ref = 
 detekt-test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version.ref = "detekt" }
 # Konsist
 konsist = "com.lemonappdev:konsist:0.15.1"
+# KMP による Analytics イベント定義
+ga913-kmp= "com.github.tfandkusu:ga913-kmp:0.0.7"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
