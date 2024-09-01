@@ -77,6 +77,7 @@ dependencies {
     implementation(libs.dagger.hilt.android)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
+    implementation(libs.ga913.kmp)
     ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
