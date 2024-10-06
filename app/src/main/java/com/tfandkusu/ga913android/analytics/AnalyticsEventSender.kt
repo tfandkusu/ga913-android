@@ -47,14 +47,13 @@ class AnalyticsEventSenderImpl
         override fun sendScreen(screen: AnalyticsEvent.Screen) {
             if (screen.isConversionEvent) {
                 firebaseAnalytics.logEvent(screen.eventName, null)
-            } else {
-                val bundle = Bundle()
-                bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen.eventName)
-                firebaseAnalytics.logEvent(
-                    FirebaseAnalytics.Event.SCREEN_VIEW,
-                    bundle,
-                )
             }
+            val bundle = Bundle()
+            bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen.eventName)
+            firebaseAnalytics.logEvent(
+                FirebaseAnalytics.Event.SCREEN_VIEW,
+                bundle,
+            )
         }
 
         override fun sendAction(action: AnalyticsEvent.Action) {
@@ -87,24 +86,22 @@ class AnalyticsEventSenderImpl
                 }
             }
             if (action.isConversionEvent) {
-                firebaseAnalytics.logEvent(action.eventName, bundle)
-            } else {
-                bundle.putString("ga913_action_name", action.eventName)
-                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
+                firebaseAnalytics.logEvent(action.eventName, bundle.deepCopy())
             }
+            bundle.putString("ga913_action_name", action.eventName)
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
         }
 
         override fun sendScreen(screen: KmpAnalyticsEventScreen) {
             if (screen.isConversionEvent) {
                 firebaseAnalytics.logEvent(screen.eventName, null)
-            } else {
-                val bundle = Bundle()
-                bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen.eventName)
-                firebaseAnalytics.logEvent(
-                    FirebaseAnalytics.Event.SCREEN_VIEW,
-                    bundle,
-                )
             }
+            val bundle = Bundle()
+            bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen.eventName)
+            firebaseAnalytics.logEvent(
+                FirebaseAnalytics.Event.SCREEN_VIEW,
+                bundle,
+            )
         }
 
         override fun sendAction(action: KmpAnalyticsEventAction) {
@@ -137,11 +134,10 @@ class AnalyticsEventSenderImpl
                 }
             }
             if (action.isConversionEvent) {
-                firebaseAnalytics.logEvent(action.eventName, bundle)
-            } else {
-                bundle.putString("ga913_action_name", action.eventName)
-                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
+                firebaseAnalytics.logEvent(action.eventName, bundle.deepCopy())
             }
+            bundle.putString("ga913_action_name", action.eventName)
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
         }
     }
 
