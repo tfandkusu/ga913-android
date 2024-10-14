@@ -3,9 +3,12 @@ package com.tfandkusu.ga913android.ui.detail
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -30,7 +33,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.tfandkusu.ga913android.R
 import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
@@ -72,56 +79,77 @@ fun LandmarkDetailScreen(
             )
         },
     ) { padding ->
-        LazyColumn(
+        Column(
             modifier =
                 Modifier
-                    .fillMaxSize(),
-            contentPadding = padding,
+                    .fillMaxSize()
+                    .padding(padding),
         ) {
-            state.landmark?.let {
-                item {
-                    Image(it.imageUrl)
-                }
-                item {
-                    TitleFavorite(
-                        name = it.name,
-                        isFavorite = it.isFavorite,
-                        onFavoriteClick = {
-                            dispatch(Event.OnClickFavorite)
-                        },
-                    )
-                }
-                item {
-                    ParkState(park = it.park, state = it.state)
-                }
-                item {
-                    HorizontalDivider(
-                        modifier = Modifier.padding(vertical = 16.dp),
-                    )
-                }
-                item {
-                    Text(
-                        modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        text = stringResource(id = R.string.landmark_detail_about, it.name),
-                        style = MaterialTheme.typography.headlineSmall,
-                    )
-                }
-                item {
-                    Text(
-                        modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 16.dp),
-                        text = it.description,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
+            LazyColumn(
+                modifier =
+                    Modifier
+                        .fillMaxHeight()
+                        .weight(1f),
+            ) {
+                state.landmark?.let {
+                    item {
+                        Image(it.imageUrl)
+                    }
+                    item {
+                        TitleFavorite(
+                            name = it.name,
+                            isFavorite = it.isFavorite,
+                            onFavoriteClick = {
+                                dispatch(Event.OnClickFavorite)
+                            },
+                        )
+                    }
+                    item {
+                        ParkState(park = it.park, state = it.state)
+                    }
+                    item {
+                        HorizontalDivider(
+                            modifier = Modifier.padding(vertical = 16.dp),
+                        )
+                    }
+                    item {
+                        Text(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            text = stringResource(id = R.string.landmark_detail_about, it.name),
+                            style = MaterialTheme.typography.headlineSmall,
+                        )
+                    }
+                    item {
+                        Text(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 16.dp),
+                            text = it.description,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
                 }
             }
+            AndroidView(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                factory = { context ->
+                    val adRequest = AdRequest.Builder().build()
+                    val adView = AdView(context)
+                    adView.adUnitId = "ca-app-pub-3940256099942544/9214589741"
+                    adView.setAdSize(AdSize.BANNER)
+                    adView.loadAd(adRequest)
+                    adView
+                },
+            )
         }
     }
 }

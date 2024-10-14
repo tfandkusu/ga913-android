@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -58,13 +57,20 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
                     },
                 )
             }
-            items(state.landmarks) { landmark ->
-                LandmarkListItem(
-                    landmark = landmark,
-                    onClick = {
-                        dispatch(Event.OnClickLandmark(landmark.id))
-                    },
-                )
+            state.landmarks.forEachIndexed { index, landmark ->
+                if (index % 5 == 2) {
+                    item {
+                        AndroidViewListItem()
+                    }
+                }
+                item {
+                    LandmarkListItem(
+                        landmark = landmark,
+                        onClick = {
+                            dispatch(Event.OnClickLandmark(landmark.id))
+                        },
+                    )
+                }
             }
         }
     }
