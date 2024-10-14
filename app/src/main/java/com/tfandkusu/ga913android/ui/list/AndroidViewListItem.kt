@@ -33,6 +33,12 @@ fun AndroidViewListItem() {
                 textView.text = "AndroidView"
                 textView
             },
+            onReset = { view ->
+                view
+            },
+            onRelease = {
+                Log.d("GA913LOG", "AndroidView onRelease")
+            },
         )
         HorizontalDivider()
     }
