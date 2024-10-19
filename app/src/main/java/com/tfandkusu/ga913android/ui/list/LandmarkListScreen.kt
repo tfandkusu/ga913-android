@@ -60,8 +60,8 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
             }
             items(
                 items = state.landmarks,
-                key = {
-                    it.id
+                key = { landmark ->
+                    landmark.id
                 },
             ) { landmark ->
                 LandmarkListItem(
