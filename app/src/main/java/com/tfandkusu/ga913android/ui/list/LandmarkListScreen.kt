@@ -58,8 +58,14 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
                     },
                 )
             }
-            items(state.landmarks) { landmark ->
+            items(
+                items = state.landmarks,
+                key = {
+                    it.id
+                },
+            ) { landmark ->
                 LandmarkListItem(
+                    modifier = Modifier.animateItem(),
                     landmark = landmark,
                     onClick = {
                         dispatch(Event.OnClickLandmark(landmark.id))

@@ -25,11 +25,11 @@ import com.tfandkusu.ga913android.model.Landmark
 fun LandmarkListItem(
     landmark: Landmark,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier =
-            Modifier
-                .fillMaxWidth(),
+            modifier.fillMaxWidth(),
     ) {
         Row(
             modifier =
