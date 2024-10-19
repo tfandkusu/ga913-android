@@ -1,16 +1,14 @@
 [versions]
-agp = "8.5.1"
+agp = "8.5.2"
 kotlin = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.8.4"
-activityCompose = "1.8.0"
-composeBom = "2024.06.00"
+lifecycleRuntimeKtx = "2.8.6"
+activityCompose = "1.9.3"
+composeBom = "2024.10.00"
 coroutines = "1.8.1"
-navigation = "2.7.7"
-fragment = "1.8.2"
+navigation = "2.8.3"
+fragment = "1.8.4"
 daggerHilt = "2.51.1"
 detekt = '1.23.6'
 
@@ -41,7 +39,7 @@ mockk = { group = "io.mockk", name = "mockk", version = "1.13.12" }
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.7.0" }
-firebase-bom = "com.google.firebase:firebase-bom:33.1.2"
+firebase-bom = "com.google.firebase:firebase-bom:33.4.0"
 firebase-analytics-ktx = {module = "com.google.firebase:firebase-analytics-ktx" }
 # Detekt
 detekt-api = { module = "io.gitlab.arturbosch.detekt:detekt-api", version.ref = "detekt" }
