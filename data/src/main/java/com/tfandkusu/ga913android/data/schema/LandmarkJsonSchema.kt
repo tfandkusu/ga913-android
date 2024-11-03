@@ -1,6 +1,8 @@
 package com.tfandkusu.ga913android.data.schema
+import android.annotation.SuppressLint
 import kotlinx.serialization.Serializable
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 data class LandmarkJsonSchema(
     val id: Long,
