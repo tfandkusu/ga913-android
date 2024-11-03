@@ -56,6 +56,7 @@ hilt {
 }
 
 dependencies {
+    implementation(projects.data)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

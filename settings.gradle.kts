@@ -20,6 +20,7 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "ga913-android"
 include(":app")
 include(":detekt-extensions")
