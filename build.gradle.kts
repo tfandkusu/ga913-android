@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.detekt.gradle.plugin)
+    alias(libs.plugins.android.library) apply false
 }
 
 subprojects {
