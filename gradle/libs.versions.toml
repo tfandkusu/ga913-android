@@ -48,6 +48,9 @@ detekt-test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version.ref 
 konsist = "com.lemonappdev:konsist:0.15.1"
 # KMP による Analytics イベント定義
 ga913-kmp= "com.github.tfandkusu:ga913-kmp:0.1.0"
+# convention
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
