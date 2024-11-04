@@ -35,5 +35,9 @@ gradlePlugin {
             id = "ga913android.hilt"
             implementationClass = "com.tfandkusu.ga913android.HiltConventionPlugin"
         }
+        register("androidLibrary") {
+            id = "ga913android.android.library"
+            implementationClass = "com.tfandkusu.ga913android.AndroidLibraryConventionPlugin"
+        }
     }
 }

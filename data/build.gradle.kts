@@ -1,9 +1,8 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.ga913android.android.library)
+    alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.ktlint)
-    alias(libs.plugins.ga913android.hilt)
 }
 
 android {
@@ -39,5 +38,4 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    testImplementation(libs.junit)
 }
