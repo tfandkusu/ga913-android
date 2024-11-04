@@ -19,11 +19,21 @@ kotlin {
 dependencies {
     compileOnly(libs.android.gradle.plugin)
     compileOnly(libs.kotlin.gradle.plugin)
+    compileOnly(libs.ksp.gradle.plugin)
 }
 
 tasks {
     validatePlugins {
         enableStricterValidation = true
         failOnWarning = true
+    }
+}
+
+gradlePlugin {
+    plugins {
+        register("hilt") {
+            id = "ga913android.hilt"
+            implementationClass = "com.tfandkusu.ga913android.HiltConventionPlugin"
+        }
     }
 }
