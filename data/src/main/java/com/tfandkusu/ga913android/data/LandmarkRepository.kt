@@ -37,8 +37,7 @@ internal class LandmarkRepositoryImpl
                         .readText()
                 val json = Json { ignoreUnknownKeys = true }
                 val landmarkList = json.decodeFromString<List<LandmarkJsonSchema>>(jsonString)
-                data.value =
-                    landmarkList.map {
+                data.value = landmarkList.map {
                         Landmark(
                             id = it.id,
                             name = it.name,

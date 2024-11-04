@@ -59,3 +59,4 @@ dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt
 devtools-ksp = { id = "com.google.devtools.ksp", version = "2.0.0-1.0.24" }
 google-services = {id = "com.google.gms.google-services", version = "4.4.2" }
 detekt-gradle-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+android-library = { id = "com.android.library", version.ref = "agp" }
