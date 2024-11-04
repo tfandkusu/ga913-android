@@ -5,8 +5,7 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.androidx.navigation.safeargs)
-    alias(libs.plugins.dagger.hilt)
-    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.google.services)
 }
 
@@ -75,11 +74,9 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.fragment.compose)
     implementation(libs.coil.compose)
-    implementation(libs.dagger.hilt.android)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.ga913.kmp)
-    ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.test.core)
