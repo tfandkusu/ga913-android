@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.ga913android.android.application)
+    alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.compose)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.androidx.navigation.safeargs)
-    alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.google.services)
 }
 

@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.ga913android.android.library)
     alias(libs.plugins.ga913android.hilt)
-    alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlinx.serialization)
 }
 
