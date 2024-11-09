@@ -7,9 +7,6 @@ plugins {
 
 android {
     namespace = "com.tfandkusu.ga913android.data"
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 }
 
 dependencies {
