@@ -1,8 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ga913android.android.application)
     alias(libs.plugins.compose)
-    alias(libs.plugins.ktlint)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.androidx.navigation.safeargs)
     alias(libs.plugins.ga913android.hilt)
@@ -11,12 +9,9 @@ plugins {
 
 android {
     namespace = "com.tfandkusu.ga913android"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.tfandkusu.ga913android"
-        minSdk = 28
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -34,13 +29,6 @@ android {
                 "proguard-rules.pro",
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
