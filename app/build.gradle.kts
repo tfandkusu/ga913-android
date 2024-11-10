@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.ga913android.android.application)
     alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.compose)
-    alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.androidx.navigation.safeargs)
     alias(libs.plugins.google.services)
 }
@@ -56,7 +55,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.material.icons.core)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
