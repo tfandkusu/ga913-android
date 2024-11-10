@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import com.tfandkusu.ga913android.R
-import com.tfandkusu.ga913android.compose.MyTopAppBar
+import com.tfandkusu.ga913android.component.MyTopAppBar
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.viewmodel.use
 import com.tfandkusu.ga913android.theme.MyTheme
@@ -41,7 +41,7 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
     val (state, dispatch) = use(viewModel)
     Scaffold(
         topBar = {
-            com.tfandkusu.ga913android.compose.MyTopAppBar(title = { Text(stringResource(R.string.app_name)) })
+            MyTopAppBar(title = { Text(stringResource(R.string.app_name)) })
         },
     ) { padding ->
         LazyColumn(
