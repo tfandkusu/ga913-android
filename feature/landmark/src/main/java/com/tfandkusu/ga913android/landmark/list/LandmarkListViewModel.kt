@@ -5,6 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
+import com.tfandkusu.ga913android.landmark.list.LandmarkListViewModel.Effect
+import com.tfandkusu.ga913android.landmark.list.LandmarkListViewModel.Event
+import com.tfandkusu.ga913android.landmark.list.LandmarkListViewModel.State
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.viewmodel.MyBaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,9 +21,9 @@ import javax.inject.Inject
 
 interface LandmarkListViewModel :
     MyBaseViewModel<
-        LandmarkListViewModel.Event,
-        LandmarkListViewModel.State,
-        LandmarkListViewModel.Effect,
+        Event,
+        State,
+        Effect,
         > {
     sealed class Event {
         data object Load : Event()
@@ -54,18 +57,18 @@ class LandmarkListViewModelImpl
         private val analyticsEventSender: AnalyticsEventSender,
     ) : ViewModel(),
         LandmarkListViewModel {
-        private val _state = MutableStateFlow(LandmarkListViewModel.State())
+        private val _state = MutableStateFlow(State())
         override val state = _state
 
         private val channel = createEffectChannel()
 
-        override val effect: Flow<LandmarkListViewModel.Effect>
+        override val effect: Flow<Effect>
             get() = channel.receiveAsFlow()
 
-        override fun event(event: LandmarkListViewModel.Event) {
+        override fun event(event: Event) {
             viewModelScope.launch {
                 when (event) {
-                    is LandmarkListViewModel.Event.Load -> {
+                    is Event.Load -> {
                         combine(
                             repository.list(),
                             state.map { it.favoritesOnly },
@@ -80,7 +83,7 @@ class LandmarkListViewModelImpl
                         }
                     }
 
-                    is LandmarkListViewModel.Event.OnChangeFavoritesOnly -> {
+                    is Event.OnChangeFavoritesOnly -> {
                         analyticsEventSender.sendAction(
                             AnalyticsEvent.Action.LandmarkList.FavoritesOnlySwitch(
                                 favoritesOnly = event.value,
@@ -89,8 +92,8 @@ class LandmarkListViewModelImpl
                         _state.value = _state.value.copy(favoritesOnly = event.value)
                     }
 
-                    is LandmarkListViewModel.Event.OnClickLandmark -> {
-                        channel.send(LandmarkListViewModel.Effect.NavigateToLandmarkDetail(event.id))
+                    is Event.OnClickLandmark -> {
+                        channel.send(Effect.NavigateToLandmarkDetail(event.id))
                     }
                 }
             }
