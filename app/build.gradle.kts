@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.ga913android.android.application.compose)
     alias(libs.plugins.ga913android.hilt)
-    alias(libs.plugins.compose)
-    alias(libs.plugins.androidx.navigation.safeargs)
     alias(libs.plugins.google.services)
 }
 
@@ -42,11 +40,6 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.fragment.compose)
-    implementation(libs.coil.compose)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.mockk)

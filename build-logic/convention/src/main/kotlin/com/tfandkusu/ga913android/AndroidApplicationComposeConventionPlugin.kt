@@ -11,6 +11,7 @@ class AndroidApplicationComposeConventionPlugin  : Plugin<Project> {
             with(pluginManager) {
                 apply("ga913android.android.application")
                 apply("org.jetbrains.kotlin.plugin.compose")
+                apply("androidx.navigation.safeargs.kotlin")
             }
             extensions.configure<ApplicationExtension> {
                 configureAndroidCompose(this)

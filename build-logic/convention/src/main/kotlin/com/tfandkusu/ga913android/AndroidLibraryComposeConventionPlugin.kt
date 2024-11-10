@@ -11,6 +11,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("ga913android.android.library")
                 apply("org.jetbrains.kotlin.plugin.compose")
+                apply("androidx.navigation.safeargs.kotlin")
             }
             extensions.configure<LibraryExtension> {
                 configureAndroidCompose(this)
