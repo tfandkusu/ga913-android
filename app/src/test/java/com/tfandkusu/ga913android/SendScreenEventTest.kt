@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui
+package com.tfandkusu.ga913android
 
 import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.ext.list.withName

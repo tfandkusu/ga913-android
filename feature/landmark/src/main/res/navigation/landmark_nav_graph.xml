@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@+id/landmarkListFragment"
+    android:id="@+id/landmark_nav_graph">
+    <fragment
+        android:id="@+id/landmarkListFragment"
+        android:name="com.tfandkusu.ga913android.landmark.list.LandmarkListFragment"
+        android:label="LandmarkListFragment">
+        <action
+            android:id="@+id/toLandmarkDetailFragment"
+            app:destination="@+id/landmarkDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/landmarkDetailFragment"
+        android:name="com.tfandkusu.ga913android.landmark.detail.LandmarkDetailFragment"
+        android:label="LandmarkDetailFragment">
+        <argument
+            android:name="landmarkId"
+            app:nullable="false"
+            app:argType="long" />
+    </fragment>
+</navigation>

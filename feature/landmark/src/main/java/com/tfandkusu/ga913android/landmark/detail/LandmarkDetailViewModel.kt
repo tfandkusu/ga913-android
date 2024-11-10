@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.detail
+package com.tfandkusu.ga913android.landmark.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,9 +6,6 @@ import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
 import com.tfandkusu.ga913android.model.Landmark
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Effect
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Event
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.State
 import com.tfandkusu.ga913android.viewmodel.MyBaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -19,9 +16,9 @@ import javax.inject.Inject
 
 interface LandmarkDetailViewModel :
     MyBaseViewModel<
-        Event,
-        State,
-        Effect,
+        LandmarkDetailViewModel.Event,
+        LandmarkDetailViewModel.State,
+        LandmarkDetailViewModel.Effect,
         > {
     sealed class Event {
         data class Load(
@@ -46,24 +43,24 @@ class LandmarkDetailViewModelImpl
         private val analyticsEventSender: AnalyticsEventSender,
     ) : ViewModel(),
         LandmarkDetailViewModel {
-        private val _state = MutableStateFlow(State())
+        private val _state = MutableStateFlow(LandmarkDetailViewModel.State())
         override val state = _state
 
         private val channel = createEffectChannel()
 
-        override val effect: Flow<Effect>
+        override val effect: Flow<LandmarkDetailViewModel.Effect>
             get() = channel.receiveAsFlow()
 
-        override fun event(event: Event) {
+        override fun event(event: LandmarkDetailViewModel.Event) {
             viewModelScope.launch {
                 when (event) {
-                    is Event.Load -> {
+                    is LandmarkDetailViewModel.Event.Load -> {
                         repository.get(event.landmarkId).collect { landmark ->
                             _state.value = _state.value.copy(landmark = landmark)
                         }
                     }
 
-                    Event.OnClickFavorite -> {
+                    LandmarkDetailViewModel.Event.OnClickFavorite -> {
                         state.value.landmark?.let { landmark ->
                             val newIsFavorite = !landmark.isFavorite
                             repository.favorite(landmark.id, newIsFavorite)

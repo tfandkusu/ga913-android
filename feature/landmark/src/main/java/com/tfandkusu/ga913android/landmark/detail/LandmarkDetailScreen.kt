@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.detail
+package com.tfandkusu.ga913android.landmark.detail
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement.spacedBy
@@ -31,17 +31,14 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.tfandkusu.ga913android.R
 import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSenderNoOp
 import com.tfandkusu.ga913android.analytics.SendScreenEvent
 import com.tfandkusu.ga913android.component.MyTopAppBar
+import com.tfandkusu.ga913android.landmark.R
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.theme.MyTheme
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Effect
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Event
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.State
 import com.tfandkusu.ga913android.viewmodel.use
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -87,7 +84,7 @@ fun LandmarkDetailScreen(
                         name = it.name,
                         isFavorite = it.isFavorite,
                         onFavoriteClick = {
-                            dispatch(Event.OnClickFavorite)
+                            dispatch(LandmarkDetailViewModel.Event.OnClickFavorite)
                         },
                     )
                 }
@@ -107,7 +104,7 @@ fun LandmarkDetailScreen(
                                 .padding(horizontal = 16.dp),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        text = stringResource(id = com.tfandkusu.ga913android.landmark.R.string.landmark_detail_about, it.name),
+                        text = stringResource(id = R.string.landmark_detail_about, it.name),
                         style = MaterialTheme.typography.headlineSmall,
                     )
                 }
@@ -219,14 +216,14 @@ private fun ParkState(
 }
 
 class LandmarkDetailViewModelPreview(
-    private val previewState: State,
+    private val previewState: LandmarkDetailViewModel.State,
 ) : LandmarkDetailViewModel {
-    override val state: StateFlow<State>
+    override val state: StateFlow<LandmarkDetailViewModel.State>
         get() = MutableStateFlow(previewState)
-    override val effect: Flow<Effect>
+    override val effect: Flow<LandmarkDetailViewModel.Effect>
         get() = flow {}
 
-    override fun event(event: Event) {}
+    override fun event(event: LandmarkDetailViewModel.Event) {}
 }
 
 private class PreviewLandmarkDetailProvider : PreviewParameterProvider<Landmark> {
@@ -272,7 +269,7 @@ private fun Preview(
     @PreviewParameter(PreviewLandmarkDetailProvider::class) landmark: Landmark,
 ) {
     val state =
-        State(
+        LandmarkDetailViewModel.State(
             landmark = landmark,
         )
     MyTheme {

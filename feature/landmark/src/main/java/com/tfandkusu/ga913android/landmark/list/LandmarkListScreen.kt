@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.list
+package com.tfandkusu.ga913android.landmark.list
 
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
@@ -22,13 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import com.tfandkusu.ga913android.R
 import com.tfandkusu.ga913android.component.MyTopAppBar
+import com.tfandkusu.ga913android.landmark.R
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.theme.MyTheme
-import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Effect
-import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
-import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.State
 import com.tfandkusu.ga913android.viewmodel.use
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,7 +38,9 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
     val (state, dispatch) = use(viewModel)
     Scaffold(
         topBar = {
-            MyTopAppBar(title = { Text(stringResource(R.string.app_name)) })
+            MyTopAppBar(title = {
+                Text(stringResource(com.tfandkusu.ga913android.viewcommon.R.string.app_name))
+            })
         },
     ) { padding ->
         LazyColumn(
@@ -54,7 +53,7 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
                 FavoritesOnlySwitch(
                     favoritesOnly = state.favoritesOnly,
                     onCheckedChange = { favoritesOnly ->
-                        dispatch(Event.OnChangeFavoritesOnly(favoritesOnly))
+                        dispatch(LandmarkListViewModel.Event.OnChangeFavoritesOnly(favoritesOnly))
                     },
                 )
             }
@@ -68,7 +67,7 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
                     modifier = Modifier.animateItem(),
                     landmark = landmark,
                     onClick = {
-                        dispatch(Event.OnClickLandmark(landmark.id))
+                        dispatch(LandmarkListViewModel.Event.OnClickLandmark(landmark.id))
                     },
                 )
             }
@@ -94,7 +93,7 @@ private fun FavoritesOnlySwitch(
         ) {
             Text(
                 modifier = Modifier.weight(1f),
-                text = stringResource(com.tfandkusu.ga913android.landmark.R.string.landmark_list_favorites_only),
+                text = stringResource(R.string.landmark_list_favorites_only),
                 style = MaterialTheme.typography.bodyLarge,
             )
             Switch(checked = favoritesOnly, onCheckedChange = onCheckedChange)
@@ -140,14 +139,14 @@ private class PreviewLandmarkListProvider : PreviewParameterProvider<List<Landma
 }
 
 class LandmarkListViewModelPreview(
-    private val previewState: State,
+    private val previewState: LandmarkListViewModel.State,
 ) : LandmarkListViewModel {
-    override val state: StateFlow<State>
+    override val state: StateFlow<LandmarkListViewModel.State>
         get() = MutableStateFlow(previewState)
-    override val effect: Flow<Effect>
+    override val effect: Flow<LandmarkListViewModel.Effect>
         get() = flow {}
 
-    override fun event(event: Event) {}
+    override fun event(event: LandmarkListViewModel.Event) {}
 }
 
 @Composable
@@ -159,7 +158,7 @@ private fun Preview(
     @PreviewParameter(PreviewLandmarkListProvider::class) landmarks: List<Landmark>,
 ) {
     val state =
-        State(
+        LandmarkListViewModel.State(
             landmarks = landmarks,
             favoritesOnly = false,
         )

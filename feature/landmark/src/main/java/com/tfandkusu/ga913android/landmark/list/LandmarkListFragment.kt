@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.list
+package com.tfandkusu.ga913android.landmark.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,8 +16,6 @@ import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.analytics.sendScreenEvent
 import com.tfandkusu.ga913android.theme.MyTheme
-import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Effect
-import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,7 +29,7 @@ class LandmarkListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.event(Event.Load)
+        viewModel.event(LandmarkListViewModel.Event.Load)
     }
 
     override fun onCreateView(
@@ -54,11 +52,11 @@ class LandmarkListFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.effect.collect { effect ->
                     when (effect) {
-                        is Effect.NavigateToLandmarkDetail -> {
+                        is LandmarkListViewModel.Effect.NavigateToLandmarkDetail -> {
                             exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
                             reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
                             findNavController().navigate(
-                                LandmarkListFragmentDirections.toLandmarkDetailFragment(
+                                LandmarkListFragmentDirections.Companion.toLandmarkDetailFragment(
                                     effect.id,
                                 ),
                             )

@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.detail
+package com.tfandkusu.ga913android.landmark.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
