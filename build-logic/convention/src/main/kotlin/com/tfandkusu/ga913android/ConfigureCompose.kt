@@ -26,5 +26,6 @@ internal fun Project.configureAndroidCompose(
         add("implementation", libs.findLibrary("androidx-ui-tooling-preview").get())
         add("implementation", libs.findLibrary("androidx-material3").get())
         add("implementation", libs.findLibrary("material-icons-core").get())
+        add("implementation", libs.findLibrary("ga913-kmp").get())
     }
 }

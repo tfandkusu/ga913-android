@@ -6,7 +6,3 @@ plugins {
 android {
     namespace = "com.tfandkusu.ga913android.landmark"
 }
-
-dependencies {
-    implementation(libs.ga913.kmp)
-}
