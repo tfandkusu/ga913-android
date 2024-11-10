@@ -1,23 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ga913android.android.application)
+    alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.compose)
-    alias(libs.plugins.ktlint)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.androidx.navigation.safeargs)
-    alias(libs.plugins.dagger.hilt)
-    alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.google.services)
 }
 
 android {
     namespace = "com.tfandkusu.ga913android"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.tfandkusu.ga913android"
-        minSdk = 28
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -35,13 +29,6 @@ android {
                 "proguard-rules.pro",
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -75,11 +62,9 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.fragment.compose)
     implementation(libs.coil.compose)
-    implementation(libs.dagger.hilt.android)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.ga913.kmp)
-    ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.test.core)
