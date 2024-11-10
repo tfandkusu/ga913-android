@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.component
+package com.tfandkusu.ga913android.compose
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons

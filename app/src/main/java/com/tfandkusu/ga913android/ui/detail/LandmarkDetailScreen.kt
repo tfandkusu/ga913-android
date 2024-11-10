@@ -36,7 +36,7 @@ import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSenderNoOp
 import com.tfandkusu.ga913android.analytics.SendScreenEvent
-import com.tfandkusu.ga913android.component.MyTopAppBar
+import com.tfandkusu.ga913android.compose.MyTopAppBar
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.viewmodel.use
 import com.tfandkusu.ga913android.theme.MyTheme
@@ -59,7 +59,7 @@ fun LandmarkDetailScreen(
     SendScreenEvent(analyticsEventSender, AnalyticsEvent.Screen.LandmarkDetail)
     Scaffold(
         topBar = {
-            MyTopAppBar(
+            com.tfandkusu.ga913android.compose.MyTopAppBar(
                 title = {
                     Text(
                         state.landmark?.name ?: "",
