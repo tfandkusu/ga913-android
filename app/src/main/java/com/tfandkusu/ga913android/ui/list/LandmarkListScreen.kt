@@ -25,11 +25,11 @@ import androidx.compose.ui.unit.dp
 import com.tfandkusu.ga913android.R
 import com.tfandkusu.ga913android.component.MyTopAppBar
 import com.tfandkusu.ga913android.model.Landmark
-import com.tfandkusu.ga913android.viewmodel.use
 import com.tfandkusu.ga913android.theme.MyTheme
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Effect
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
 import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.State
+import com.tfandkusu.ga913android.viewmodel.use
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

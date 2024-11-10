@@ -6,10 +6,10 @@ import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
 import com.tfandkusu.ga913android.model.Landmark
-import com.tfandkusu.ga913android.viewmodel.MyBaseViewModel
 import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Effect
 import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Event
 import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.State
+import com.tfandkusu.ga913android.viewmodel.MyBaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
