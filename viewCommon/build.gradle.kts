@@ -3,5 +3,5 @@ plugins {
 }
 
 android {
-    namespace = "com.tfandkusu.ga913android.model"
+    namespace = "com.tfandkusu.ga913android.viewcommon"
 }
