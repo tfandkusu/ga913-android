@@ -37,6 +37,9 @@ import com.tfandkusu.ga913android.analytics.AnalyticsEventSenderNoOp
 import com.tfandkusu.ga913android.analytics.SendScreenEvent
 import com.tfandkusu.ga913android.component.MyTopAppBar
 import com.tfandkusu.ga913android.landmark.R
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.Effect
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.Event
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.State
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.theme.MyTheme
 import com.tfandkusu.ga913android.viewmodel.use
@@ -84,7 +87,7 @@ fun LandmarkDetailScreen(
                         name = it.name,
                         isFavorite = it.isFavorite,
                         onFavoriteClick = {
-                            dispatch(LandmarkDetailViewModel.Event.OnClickFavorite)
+                            dispatch(Event.OnClickFavorite)
                         },
                     )
                 }
@@ -216,14 +219,14 @@ private fun ParkState(
 }
 
 class LandmarkDetailViewModelPreview(
-    private val previewState: LandmarkDetailViewModel.State,
+    private val previewState: State,
 ) : LandmarkDetailViewModel {
-    override val state: StateFlow<LandmarkDetailViewModel.State>
+    override val state: StateFlow<State>
         get() = MutableStateFlow(previewState)
-    override val effect: Flow<LandmarkDetailViewModel.Effect>
+    override val effect: Flow<Effect>
         get() = flow {}
 
-    override fun event(event: LandmarkDetailViewModel.Event) {}
+    override fun event(event: Event) {}
 }
 
 private class PreviewLandmarkDetailProvider : PreviewParameterProvider<Landmark> {
@@ -269,7 +272,7 @@ private fun Preview(
     @PreviewParameter(PreviewLandmarkDetailProvider::class) landmark: Landmark,
 ) {
     val state =
-        LandmarkDetailViewModel.State(
+        State(
             landmark = landmark,
         )
     MyTheme {

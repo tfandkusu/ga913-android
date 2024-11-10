@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialSharedAxis
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.Event
 import com.tfandkusu.ga913android.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -28,7 +29,7 @@ class LandmarkDetailFragment : Fragment() {
         enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
         returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
         viewModel.event(
-            LandmarkDetailViewModel.Event.Load(landmarkId = args.landmarkId),
+            Event.Load(landmarkId = args.landmarkId),
         )
     }
 

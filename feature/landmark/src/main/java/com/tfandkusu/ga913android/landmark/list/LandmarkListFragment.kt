@@ -15,6 +15,8 @@ import com.google.android.material.transition.MaterialSharedAxis
 import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.analytics.sendScreenEvent
+import com.tfandkusu.ga913android.landmark.list.LandmarkListViewModel.Effect
+import com.tfandkusu.ga913android.landmark.list.LandmarkListViewModel.Event
 import com.tfandkusu.ga913android.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -29,7 +31,7 @@ class LandmarkListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.event(LandmarkListViewModel.Event.Load)
+        viewModel.event(Event.Load)
     }
 
     override fun onCreateView(
@@ -52,7 +54,7 @@ class LandmarkListFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.effect.collect { effect ->
                     when (effect) {
-                        is LandmarkListViewModel.Effect.NavigateToLandmarkDetail -> {
+                        is Effect.NavigateToLandmarkDetail -> {
                             exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
                             reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
                             findNavController().navigate(
