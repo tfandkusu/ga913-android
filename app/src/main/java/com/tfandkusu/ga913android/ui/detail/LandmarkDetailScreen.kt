@@ -38,7 +38,7 @@ import com.tfandkusu.ga913android.analytics.AnalyticsEventSenderNoOp
 import com.tfandkusu.ga913android.analytics.SendScreenEvent
 import com.tfandkusu.ga913android.component.MyTopAppBar
 import com.tfandkusu.ga913android.model.Landmark
-import com.tfandkusu.ga913android.presentation.use
+import com.tfandkusu.ga913android.viewmodel.use
 import com.tfandkusu.ga913android.theme.MyTheme
 import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Effect
 import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Event
