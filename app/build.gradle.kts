@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.ga913android.android.application)
+    alias(libs.plugins.ga913android.android.application.compose)
     alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.compose)
     alias(libs.plugins.androidx.navigation.safeargs)
@@ -29,12 +29,6 @@ android {
             )
         }
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
 }
 
 hilt {
@@ -45,17 +39,8 @@ dependencies {
     implementation(projects.model)
     implementation(projects.data)
     implementation(projects.viewCommon)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.material.icons.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)

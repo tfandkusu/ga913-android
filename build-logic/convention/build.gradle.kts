@@ -20,6 +20,7 @@ dependencies {
     compileOnly(libs.android.gradle.plugin)
     compileOnly(libs.kotlin.gradle.plugin)
     compileOnly(libs.ksp.gradle.plugin)
+    compileOnly(libs.compose.gradle.plugin)
 }
 
 tasks {
@@ -42,6 +43,14 @@ gradlePlugin {
         register("androidApplication") {
             id = "ga913android.android.application"
             implementationClass = "com.tfandkusu.ga913android.AndroidApplicationConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = "ga913android.android.library.compose"
+            implementationClass = "com.tfandkusu.ga913android.AndroidLibraryComposeConventionPlugin"
+        }
+        register("androidApplicationCompose") {
+            id = "ga913android.android.application.compose"
+            implementationClass = "com.tfandkusu.ga913android.AndroidApplicationComposeConventionPlugin"
         }
     }
 }
