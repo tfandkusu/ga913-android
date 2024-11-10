@@ -107,7 +107,7 @@ fun LandmarkDetailScreen(
                                 .padding(horizontal = 16.dp),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        text = stringResource(id = R.string.landmark_detail_about, it.name),
+                        text = stringResource(id = com.tfandkusu.ga913android.landmark.R.string.landmark_detail_about, it.name),
                         style = MaterialTheme.typography.headlineSmall,
                     )
                 }

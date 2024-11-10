@@ -94,7 +94,7 @@ private fun FavoritesOnlySwitch(
         ) {
             Text(
                 modifier = Modifier.weight(1f),
-                text = stringResource(R.string.landmark_list_favorites_only),
+                text = stringResource(com.tfandkusu.ga913android.landmark.R.string.landmark_list_favorites_only),
                 style = MaterialTheme.typography.bodyLarge,
             )
             Switch(checked = favoritesOnly, onCheckedChange = onCheckedChange)
