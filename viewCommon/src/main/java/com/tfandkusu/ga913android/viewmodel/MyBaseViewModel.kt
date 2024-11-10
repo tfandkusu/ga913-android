@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.presentation
+package com.tfandkusu.ga913android.viewmodel
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
