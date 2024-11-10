@@ -43,6 +43,7 @@ hilt {
 }
 
 dependencies {
+    implementation(projects.model)
     implementation(projects.data)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
