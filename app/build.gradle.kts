@@ -37,6 +37,7 @@ dependencies {
     implementation(projects.model)
     implementation(projects.data)
     implementation(projects.viewCommon)
+    implementation(projects.feature.landmark)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
     testImplementation(libs.kotlinx.coroutines.test)
