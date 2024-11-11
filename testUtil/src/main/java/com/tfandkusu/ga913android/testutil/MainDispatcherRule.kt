@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.landmark
+package com.tfandkusu.ga913android.testutil
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

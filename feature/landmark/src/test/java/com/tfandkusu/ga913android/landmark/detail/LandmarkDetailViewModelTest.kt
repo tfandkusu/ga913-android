@@ -3,10 +3,10 @@ package com.tfandkusu.ga913android.landmark.detail
 import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
-import com.tfandkusu.ga913android.landmark.MainDispatcherRule
 import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.Event
 import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.State
 import com.tfandkusu.ga913android.model.Landmark
+import com.tfandkusu.ga913android.testutil.MainDispatcherRule
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerifySequence

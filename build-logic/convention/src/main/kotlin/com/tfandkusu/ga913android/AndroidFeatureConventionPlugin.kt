@@ -17,6 +17,7 @@ class AndroidFeatureConventionPlugin  : Plugin<Project> {
                 add("implementation", libs.findLibrary("kotlinx-coroutines-android").get())
                 add("debugImplementation", libs.findLibrary("androidx-ui-tooling").get())
                 add("debugImplementation", libs.findLibrary("androidx-ui-test-manifest").get())
+                add("testImplementation", project(":testUtil"))
                 add("testImplementation", libs.findLibrary("kotlinx-coroutines-test").get())
                 add("testImplementation", libs.findLibrary("androidx-test-core").get())
                 add("testImplementation", libs.findLibrary("mockk").get())
