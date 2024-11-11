@@ -52,5 +52,9 @@ gradlePlugin {
             id = "ga913android.android.application.compose"
             implementationClass = "com.tfandkusu.ga913android.AndroidApplicationComposeConventionPlugin"
         }
+        register("androidFeature") {
+            id = "ga913android.android.feature"
+            implementationClass = "com.tfandkusu.ga913android.AndroidFeatureConventionPlugin"
+        }
     }
 }

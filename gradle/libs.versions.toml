@@ -72,3 +72,4 @@ ga913android-android-library = { id = "ga913android.android.library" }
 ga913android-android-application = { id = "ga913android.android.application" }
 ga913android-android-library-compose = { id = "ga913android.android.library.compose" }
 ga913android-android-application-compose = { id = "ga913android.android.application.compose" }
+ga913android-android-feature = { id = "ga913android.android.feature" }
