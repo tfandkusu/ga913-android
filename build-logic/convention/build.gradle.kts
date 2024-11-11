@@ -56,5 +56,9 @@ gradlePlugin {
             id = "ga913android.android.feature"
             implementationClass = "com.tfandkusu.ga913android.AndroidFeatureConventionPlugin"
         }
+        register("testUtil") {
+            id = "ga913android.test.util"
+            implementationClass = "com.tfandkusu.ga913android.TestUtilConventionPlugin"
+        }
     }
 }
