@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.list
+package com.tfandkusu.ga913android.landmark.list
 
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
@@ -22,13 +22,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import com.tfandkusu.ga913android.R
 import com.tfandkusu.ga913android.component.MyTopAppBar
+import com.tfandkusu.ga913android.landmark.R
+import com.tfandkusu.ga913android.landmark.list.LandmarkListViewModel.Effect
+import com.tfandkusu.ga913android.landmark.list.LandmarkListViewModel.Event
+import com.tfandkusu.ga913android.landmark.list.LandmarkListViewModel.State
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.theme.MyTheme
-import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Effect
-import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.Event
-import com.tfandkusu.ga913android.ui.list.LandmarkListViewModel.State
 import com.tfandkusu.ga913android.viewmodel.use
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,7 +41,9 @@ fun LandmarkListScreen(viewModel: LandmarkListViewModel) {
     val (state, dispatch) = use(viewModel)
     Scaffold(
         topBar = {
-            MyTopAppBar(title = { Text(stringResource(R.string.app_name)) })
+            MyTopAppBar(title = {
+                Text(stringResource(com.tfandkusu.ga913android.viewcommon.R.string.app_name))
+            })
         },
     ) { padding ->
         LazyColumn(

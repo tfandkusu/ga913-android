@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.detail
+package com.tfandkusu.ga913android.landmark.detail
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement.spacedBy
@@ -31,17 +31,17 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.tfandkusu.ga913android.R
 import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSenderNoOp
 import com.tfandkusu.ga913android.analytics.SendScreenEvent
 import com.tfandkusu.ga913android.component.MyTopAppBar
+import com.tfandkusu.ga913android.landmark.R
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.Effect
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.Event
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.State
 import com.tfandkusu.ga913android.model.Landmark
 import com.tfandkusu.ga913android.theme.MyTheme
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Effect
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Event
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.State
 import com.tfandkusu.ga913android.viewmodel.use
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

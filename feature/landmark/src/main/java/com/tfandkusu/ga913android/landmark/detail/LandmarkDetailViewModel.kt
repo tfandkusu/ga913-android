@@ -1,14 +1,14 @@
-package com.tfandkusu.ga913android.ui.detail
+package com.tfandkusu.ga913android.landmark.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tfandkusu.ga913android.analytics.AnalyticsEvent
 import com.tfandkusu.ga913android.analytics.AnalyticsEventSender
 import com.tfandkusu.ga913android.data.LandmarkRepository
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.Effect
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.Event
+import com.tfandkusu.ga913android.landmark.detail.LandmarkDetailViewModel.State
 import com.tfandkusu.ga913android.model.Landmark
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Effect
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.Event
-import com.tfandkusu.ga913android.ui.detail.LandmarkDetailViewModel.State
 import com.tfandkusu.ga913android.viewmodel.MyBaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

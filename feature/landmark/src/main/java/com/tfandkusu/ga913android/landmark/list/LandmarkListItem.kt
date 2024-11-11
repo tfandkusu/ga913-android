@@ -1,4 +1,4 @@
-package com.tfandkusu.ga913android.ui.list
+package com.tfandkusu.ga913android.landmark.list
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.spacedBy
