@@ -23,10 +23,8 @@ jobs:
       - name: reviewdog を使えるようにする
         uses: reviewdog/action-setup@v1
       - uses: gradle/gradle-build-action@v2
-      - name: プロジェクトのフォーマットチェック
+      - name: フォーマットチェック
         run: ./gradlew ktlintCheck
-      - name: Convention Plugins のフォーマットチェック
-        run: ./gradlew :build-logic:convention:ktlintCheck
       - name: detekt カスタムルールの単体テスト
         run: ./gradlew detekt-extensions:test
       - name: detekt による静的コード解析

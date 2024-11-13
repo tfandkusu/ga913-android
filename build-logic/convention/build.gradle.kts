@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     `kotlin-dsl`
-    alias(libs.plugins.ktlint)
 }
 
 group = "com.tfandkusu.ga913android.buildlogic"
