@@ -43,6 +43,11 @@ public object AnalyticsEvent {
          * 情報画面
          */
         public data object Info : Screen("Info", false)
+
+        /**
+         * テスト画面
+         */
+        public data object Test : Screen("Test", false)
     }
 
     /**
@@ -144,5 +149,10 @@ public object AnalyticsEvent {
              */
             public object PrivacyPolicy : Action("InfoPrivacyPolicy", emptyMap(), false)
         }
+
+        /**
+         * テスト画面
+         */
+        public object Test
     }
 }
