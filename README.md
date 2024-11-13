@@ -42,4 +42,4 @@ AnalyticsEvent.Screen, AnalyticsEvent.Action sealed class を実装したイン�
 
 ## Konsist
 
-[Fragment による画面遷移における Analytics イベント送信](https://github.com/tfandkusu/ga913-android/blob/c06cb08fc1c23a1d456d0dd225a68a838a4aa385/feature/landmark/src/main/java/com/tfandkusu/ga913android/landmark/list/LandmarkListFragment.kt#L52)実装抜けを検出する [Konsist](https://github.com/LemonAppDev/konsist/) を用いた単体テストを[こちら](https://github.com/tfandkusu/ga913-android/blob/main/app/src/test/java/com/tfandkusu/ga913android/ui/SendScreenEventTest.kt)に実装しています。
+[Fragment による画面遷移における Analytics イベント送信](https://github.com/tfandkusu/ga913-android/blob/c06cb08fc1c23a1d456d0dd225a68a838a4aa385/feature/landmark/src/main/java/com/tfandkusu/ga913android/landmark/list/LandmarkListFragment.kt#L52)実装抜けを検出する [Konsist](https://github.com/LemonAppDev/konsist/) を用いた単体テストを[こちら](https://github.com/tfandkusu/ga913-android/blob/main/app/src/test/java/com/tfandkusu/ga913android/SendScreenEventTest.kt)に実装しています。
