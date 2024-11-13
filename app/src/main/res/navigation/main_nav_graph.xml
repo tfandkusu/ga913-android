@@ -2,23 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@+id/landmarkListFragment">
-    <fragment
-        android:id="@+id/landmarkListFragment"
-        android:name="com.tfandkusu.ga913android.ui.list.LandmarkListFragment"
-        android:label="LandmarkListFragment">
-        <action
-            android:id="@+id/toLandmarkDetailFragment"
-            app:destination="@+id/landmarkDetailFragment" />
-    </fragment>
+    app:startDestination="@id/landmark_nav_graph">
 
-    <fragment
-        android:id="@+id/landmarkDetailFragment"
-        android:name="com.tfandkusu.ga913android.ui.detail.LandmarkDetailFragment"
-        android:label="LandmarkDetailFragment">
-        <argument
-            android:name="landmarkId"
-            app:nullable="false"
-            app:argType="long" />
-    </fragment>
+    <include app:graph="@navigation/landmark_nav_graph" />
 </navigation>

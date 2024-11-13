@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">Landmarks</string>
-    <string name="landmark_list_favorites_only">Favorites only</string>
-    <string name="landmark_detail_about">About %s</string>
-</resources>
