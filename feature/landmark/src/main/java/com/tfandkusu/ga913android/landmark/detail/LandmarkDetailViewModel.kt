@@ -1,6 +1,5 @@
 package com.tfandkusu.ga913android.landmark.detail
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tfandkusu.ga913android.analytics.AnalyticsEvent
@@ -59,7 +58,6 @@ class LandmarkDetailViewModelImpl
             viewModelScope.launch {
                 when (event) {
                     is Event.Load -> {
-                        Log.d("Takada", "Load")
                         repository.get(event.landmarkId).collect { landmark ->
                             _state.value = _state.value.copy(landmark = landmark)
                         }
