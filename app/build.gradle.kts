@@ -50,7 +50,6 @@ dependencies {
     implementation(libs.firebase.analytics.ktx)
 }
 
-
 sentry {
     org.set("tfandkusu")
     projectName.set("ga913")
