@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.ga913android.android.application.compose)
     alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.google.services)
-
-    id("io.sentry.android.gradle") version "5.12.1"
+    alias(libs.plugins.sentry.android.gradle)
 }
 
 android {
