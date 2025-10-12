@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.ga913android.android.application.compose)
     alias(libs.plugins.ga913android.hilt)
     alias(libs.plugins.google.services)
+
+    id("io.sentry.android.gradle") version "5.12.1"
 }
 
 android {
@@ -47,4 +49,14 @@ dependencies {
     testImplementation(libs.junit)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
+}
+
+
+sentry {
+    org.set("tfandkusu")
+    projectName.set("ga913")
+
+    // this will upload your source code to Sentry to show it as part of the stack traces
+    // disable if you don't want to expose your sources
+    includeSourceContext.set(true)
 }
